@@ -4,7 +4,10 @@
 #include <stdint.h>
 
 #define MULTIBOOT_MAGIC 0x1BADB002
-#define MULTIBOOT_FLAGS 0x00000000
+#define MULTIBOOT_FLAGS 0x00000003
+#define MULTIBOOT_BOOTLOADER_MAGIC 0x2BADB002
+#define MULTIBOOT_INFO_MEMORY_MAP (1u << 6)
+#define MULTIBOOT_INFO_MODULES (1u << 3)
 
 #define MULTIBOOT_MEMORY_AVAILABLE        1
 #define MULTIBOOT_MEMORY_RESERVED         2
@@ -68,5 +71,12 @@ struct multiboot_memory_map_t {
     uint32_t len_high;
 	uint32_t type;
 } __attribute__ ((packed));
+
+struct multiboot_module_t {
+    uint32_t start;
+    uint32_t end;
+    uint32_t string;
+    uint32_t reserved;
+} __attribute__((packed));
 
 #endif
